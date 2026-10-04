@@ -1,19 +1,36 @@
 # demo-fake-py3.9
 
-A small, intentionally fictitious Python 3.9 codebase used as a test fixture for Genie's
-"Language or runtime upgrade" modernization capability.
+This is a small demo repository showcasing simple Python utility modules (`calc.py`, `db_ops.py`, `str_ops.py`) and their associated unit tests using `pytest`.
 
-## Layout
+Originally the project targeted Python 3.9. It has now been verified to run on **Python 3.12**.
 
-- `calc.py` - math/arithmetic/geometry/statistics utility functions
-- `db_ops.py` - SQLite database operation helpers (connections, CRUD, transactions, import/export)
-- `str_ops.py` - string manipulation utility functions
-- `tests/` - pytest unit tests covering all three modules
-- `Dockerfile` - `python:3.9-slim` base image, used by Genie's dependency assessment to detect
-  the current runtime version
-- `requirements.txt` - pytest only (no other third-party dependencies)
+## Requirements
 
-This repository intentionally targets Python 3.9 so that a "Language or runtime upgrade" plan
-has real, evidenced work to do (e.g. upgrading to a newer Python version and adjusting the
-`typing.List`/`typing.Union`-style type hints used throughout to the modern built-in generic
-and `X | Y` union syntax, if targeting Python 3.10+).
+- Python 3.12
+- `pip`
+
+## Setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On Windows use: .venv\\Scripts\\activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+## Running tests
+
+```bash
+pytest
+```
+
+## Container usage
+
+A minimal `Dockerfile` is provided which uses the official `python:3.12-slim` image, installs dependencies from `requirements.txt`, and runs the pytest suite by default.
+
+To build and run tests in a container:
+
+```bash
+docker build -t demo-fake-py312 .
+docker run --rm demo-fake-py312
+```

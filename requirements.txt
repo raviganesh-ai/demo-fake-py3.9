@@ -1,1 +1,4 @@
+# Runtime and test dependencies for this demo project
+# Upgraded to ensure compatibility with Python 3.12.
+
 pytest==7.4.3
